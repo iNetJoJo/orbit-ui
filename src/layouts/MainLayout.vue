@@ -67,6 +67,11 @@ export default {
       leftDrawerOpen: false,
       essentialLinks: [
         {
+          title: 'Dashboard',
+          icon: 'storage',
+          to: "/"
+        },
+        {
           title: 'Databases',
           caption: 'no instances',
           icon: 'storage',

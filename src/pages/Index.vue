@@ -4,7 +4,7 @@
       <h1>Orbit Dashboard</h1>
     </div>
     <div class="card-holder text-center">
-      <q-card  v-for="(q, i) in navigationCards" v-bind:key="i" v-bind:class="{'navigation-card-animation-down': i % 2 === 0, 'navigation-card-animation-up': i % 2 !== 0}">
+      <q-card v-for="(q, i) in navigationCards" v-bind:key="i" v-bind:class="{'navigation-card-animation-down': i % 2 === 0, 'navigation-card-animation-up': i % 2 !== 0}">
         <q-card-section>
           <div class="text-h6">{{q.title}}</div>
         </q-card-section>
