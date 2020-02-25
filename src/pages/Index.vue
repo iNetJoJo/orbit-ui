@@ -1,8 +1,6 @@
 <template>
   <q-page class="flex flex-center orbit-front-page">
-    <div class="dashboard-title">
-      <h1>Orbit Dashboard</h1>
-    </div>
+    <PageTitle text="Dashboard"/>
     <div class="card-holder text-center">
       <q-card v-for="(q, i) in navigationCards" v-bind:key="i" v-bind:class="{'navigation-card-animation-down': i % 2 === 0, 'navigation-card-animation-up': i % 2 !== 0}">
         <q-card-section>
@@ -30,8 +28,10 @@
 </template>
 
 <script>
+import PageTitle from "../components/PageTitle";
 export default {
   name: 'PageIndex',
+  components: {PageTitle},
   data(){
     return{
       navigationCards:[
@@ -109,18 +109,5 @@ export default {
     to {
       transform: translateY(0px);
     }
-  }
-
-  .dashboard-title {
-    color: aliceblue;
-    background-color: rgba(46, 125, 50, 0.85);
-    border-radius: 3em;
-    animation: fadeIn;
-    animation-duration: 3s;
-  }
-
-  @keyframes fadeIn {
-    from{opacity: 0}
-    to{opacity: 1}
   }
 </style>

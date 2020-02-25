@@ -121,6 +121,7 @@
             add_DBInstance: false,
             show_DBInstanceInfo: false,
             chosen_instance: null,
+
             instance:{
               name: '',
               port: '',

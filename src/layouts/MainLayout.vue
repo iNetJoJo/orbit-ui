@@ -45,7 +45,6 @@
         </q-item>
       </q-list>
     </q-drawer>
-
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -69,7 +68,7 @@ export default {
         {
           title: 'Dashboard',
           icon: 'storage',
-          to: "/"
+          to: "/dashboard"
         },
         {
           title: 'Databases',
