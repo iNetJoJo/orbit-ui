@@ -15,6 +15,7 @@
           Orbit
         </q-toolbar-title>
 
+        <Notifications/>
         <div>Orbit v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
@@ -53,11 +54,13 @@
 
 <script>
 import EssentialLink from 'components/EssentialLink'
+import Notifications from "../components/Databases/Notifications/Notifications";
 
 export default {
   name: 'MainLayout',
 
   components: {
+    Notifications,
     EssentialLink
   },
 
@@ -96,7 +99,8 @@ export default {
         },
       ]
     }
-  }
+  },
+
 }
 </script>
 

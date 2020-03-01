@@ -39,15 +39,13 @@
           this.$axios.post('http://localhost:4200/api/users/login', request).then(resp => this.saveJwtToCookie(resp)).catch(err => this.handlerError(err));
         },
         saveJwtToCookie(resp) {
-          Cookies.set('jwt-token', resp.data.user.token, {secure: true})
+          console.log(resp);
+          console.log(Cookies.get('jwt-token'));
+          Cookies.set('jwt-token', resp.data.user.token);
+          console.log(Cookies.get('jwt-token'));
           this.$router.push('dashboard')
         },
-        handlerError(error){
-          let msg = "unexpected error"
-          if (error.response.status == 403){
-            msg = "Invalid credentials"
-          }
-
+        handlerError(error, msg){
           console.log(error)
           this.$q.notify({
             message: msg,
