@@ -1,5 +1,7 @@
 <template>
   <div class="q-pa-md">
+
+    <q-avatar color="red" size="25px" text-color="white">{{notifications.length}}</q-avatar>
     <q-btn-dropdown
       color="white"
       push
@@ -33,10 +35,13 @@
 </template>
 
 <script>
-  import { Cookies } from 'quasar'
-  import RestAPI from "../../../lib/backend-rest/RestAPI";
+  import {Cookies} from 'quasar'
+  import RestAPI from "../../lib/backend-rest/RestAPI";
   import NotificationIcons from "./NotificationIcons";
-    export default {
+  import notifications from "../../lib/Notification/notifications";
+  import {EventBus} from "../../lib/eventBus/eventBus";
+
+  export default {
         name: "Notifications",
       components: {NotificationIcons},
       data(){
@@ -67,20 +72,37 @@
             console.log('Connected');
             ws.send(JSON.stringify({token: Cookies.get('jwt-token')}))
           };
-        ws.onclose = function(){
-          console.log('closing')
-        }
+          ws.onclose = function () {
+            console.log('closing')
+          };
 
           ws.onmessage = (evt) => {
-          console.log(evt)
-            this.notifications.push(JSON.parse(evt.data))
+            console.log(evt);
+            this.notifyEvent(evt)
           };
           this.wsConn = ws;
         },
-        getAllNotifications(){
-          RestAPI.get('notifications/get-all-notifications').
-            then(resp => this.notifications.push(...resp.data)).
-            catch(err => notifications.handlerError(err))
+        notifyEvent(evt) {
+          let notification = JSON.parse(evt.data);
+          this.notifications.push(notification);
+          console.log('NOTFIKACIJA',notification)
+
+          if (notification.Status === 1) {
+            notifications.handlerError(notification.Notification)
+          } else {
+            console.log(notification.Notification)
+            notifications.handleSuccess(evt, notification.Notification)
+          }
+
+          switch (notification.Tab) {
+                  case notifications.Tabs.DATABASES: EventBus.$emit('db-event', notification);
+                  default: break;
+          }
+
+
+        },
+        getAllNotifications() {
+          RestAPI.get('notifications/get-all-notifications').then(resp => this.notifications.push(...resp.data)).catch(err => notifications.handlerError(err))
         }
       },
       mounted() {

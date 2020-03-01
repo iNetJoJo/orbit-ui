@@ -7,7 +7,7 @@
       round
       color="green"
       icon="arrow_back"
-      @click="logTest"
+      @click="formActive=false"
     />
     <div class="text-center">
     <template v-if="!formActive">
@@ -23,19 +23,21 @@
       <div class="text-h4 text-bold">{{db_info_text}}</div>
     </q-card-section>
     </template>
-    <DBConfigForm v-else :existing-databases="existingDatabases" :reload-table="reloadTable"/>
+      <DBConfigForm :close-modal="close" :existing-databases="existingDatabases" :reload-table="reloadTable" v-else/>
     </div>
   </q-card>
 </template>
 
 <script>
-    import DBPickerButton from "./DBPickerButton";
-    import DBConfigForm from "./DBConfigForm";
-    export default {
+  import DBPickerButton from "./DBPickerButton";
+  import DBConfigForm from "./DBConfigForm";
+
+  export default {
         name: "DatabasePickerModal",
-      props:{
+      props: {
         existingDatabases: Array,
-        reloadTable: Function
+        reloadTable: Function,
+        close: Function
       },
       components: {DBConfigForm, DBPickerButton},
       data(){
@@ -51,9 +53,6 @@
           },
           select_db(){
             this.formActive = true;
-          },
-          logTest(){
-            console.log(this.$props)
           },
       }
     }

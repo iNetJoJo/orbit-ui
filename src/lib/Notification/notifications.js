@@ -4,7 +4,8 @@ export default {
   handleError(error){
   console.log(error);
   Notify.create({
-    message: error.message,
+    group: false,
+    message: error,
     color: 'red',
     multiLine: true
   })
@@ -12,6 +13,7 @@ export default {
   handleSuccess(response, message){
     console.log(response);
     Notify.create({
+      group: false,
       message: message,
       color: 'green',
       multiLine: true

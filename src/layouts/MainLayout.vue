@@ -34,6 +34,23 @@
           Navigation
         </q-item-label>
         <q-item v-for="(q, i) in essentialLinks" v-bind:key="i" v-ripple clickable v-bind:to="q.to">
+          <q-item-section avatar>
+            <q-icon v-bind:name="q.icon"/>
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>
+              {{q.title}}
+            </q-item-label>
+          </q-item-section>
+          <q-separator spaced inset/>
+        </q-item>
+
+        <q-expansion-item
+          group="services"
+          icon="apps"
+          label="Services"
+        >
+          <q-item style="padding-left: 50px" v-for="(q, i) in servicesLinks" v-bind:key="i" v-ripple clickable v-bind:to="q.to">
             <q-item-section avatar>
               <q-icon v-bind:name="q.icon"/>
             </q-item-section>
@@ -42,8 +59,9 @@
                 {{q.title}}
               </q-item-label>
             </q-item-section>
-          <q-separator spaced inset/>
-        </q-item>
+            <q-separator spaced inset/>
+          </q-item>
+        </q-expansion-item>
       </q-list>
     </q-drawer>
     <q-page-container>
@@ -54,7 +72,8 @@
 
 <script>
 import EssentialLink from 'components/EssentialLink'
-import Notifications from "../components/Databases/Notifications/Notifications";
+import Notifications from "../components/Notifications/Notifications";
+import { mdiDocker, mdiKubernetes } from '@quasar/extras/mdi-v4'
 
 export default {
   name: 'MainLayout',
@@ -70,14 +89,8 @@ export default {
       essentialLinks: [
         {
           title: 'Dashboard',
-          icon: 'storage',
+          icon: 'home',
           to: "/dashboard"
-        },
-        {
-          title: 'Databases',
-          caption: 'no instances',
-          icon: 'storage',
-          to: "/databases"
         },
         {
           title: 'Cloud diagram',
@@ -86,16 +99,36 @@ export default {
           to: '/diagram'
         },
         {
-          title: 'Service monitoring',
-          caption: 'no instances',
-          icon: 'multiline_chart',
-          to: '/services'
-        },
-        {
           title: 'Docs',
           caption: 'orbit.dev',
           icon: 'school',
           to: '/docs'
+        },
+      ],
+      servicesLinks:[
+        {
+          title: 'Databases',
+          caption: 'no instances',
+          icon: 'storage',
+          to: "/databases"
+        },
+        {
+          title: 'Docker',
+          caption: 'no instances',
+          icon: mdiDocker,
+          to: "/docker"
+        },
+        {
+          title: 'Kubernetes',
+          caption: 'no instances',
+          icon: mdiKubernetes,
+          to: "/kubernetes"
+        },
+        {
+          title: 'Service monitoring',
+          caption: 'no instances',
+          icon: 'multiline_chart',
+          to: '/services'
         },
       ]
     }

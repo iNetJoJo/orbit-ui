@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import notifications from "../../../lib/Notification/notifications";
+  import notifications from "../../lib/Notification/notifications";
     export default {
         name: "NotificationIcons",
         props:{

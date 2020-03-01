@@ -40,7 +40,7 @@
         lazy-rules
         :rules="[
           val => val !== null && val !== '' || 'Please type instance port',
-         // val => val < 1024 && val > 49151 || 'Allowed range (1024-49151)',
+          val => val > 1024 && val < 49151 || 'Allowed range (1024-49151)',
           val => DBPortInUse(val) || 'Instance with selected port already exists'
         ]"
       />
@@ -76,14 +76,15 @@
 </template>
 
 <script>
-    import RestAPI from "../../../lib/backend-rest/RestAPI";
-    import notifications from "../../../lib/Notification/notifications";
+  import RestAPI from "../../../lib/backend-rest/RestAPI";
+  import notifications from "../../../lib/Notification/notifications";
 
-    export default {
+  export default {
         name: "DBConfigForm",
-      props:{
-          existingDatabases: Array,
-          reloadTable: Function
+      props: {
+        existingDatabases: Array,
+        reloadTable: Function,
+        closeModal: Function
       },
       data(){
           return{
@@ -99,17 +100,14 @@
               }
             }
           },
-      methods:{
-          onSubmit(){
-            RestAPI.post('/databases/add-postgres-instance', this.instance).
-            then(resp => {
-              notifications.handleSuccess(resp, 'successfully created new database');
-              this.reloadTable();
-            }).
-              catch(err => notifications.handleError(err))
-          },
-        onReset(){
-            console.log('reset')
+      methods: {
+        onSubmit() {
+          RestAPI.post('/databases/add-postgres-instance', this.instance).then(resp => {
+            this.closeModal();
+          }).catch(err => notifications.handleError(err));
+        },
+        onReset() {
+          console.log('reset')
         },
         DBNameExists(val){
             val = val.toLowerCase();
