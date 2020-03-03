@@ -56,7 +56,7 @@
   import ControlsTab from "./ControlsTab";
 
   export default {
-    name: "DatabasesInspectModal",
+    name: "DockerContainerInspectModal",
     components: {ControlsTab, NetworksTab, MountsTab, PortsTab},
     props: {
       container: {

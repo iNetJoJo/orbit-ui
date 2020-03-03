@@ -11,10 +11,10 @@
   </q-tabs>
     <q-tab-panels v-model="tab">
     <q-tab-panel name="containers">
-      Containers
+      <ContainersTab/>
     </q-tab-panel>
     <q-tab-panel name="images">
-      Images
+<!--      <ImagesTab/>-->
     </q-tab-panel>
     <q-tab-panel name="networks">
       Netowks
@@ -25,10 +25,13 @@
 
 
 <script>
-  import {mdiCubeOutline, mdiNetworkRouter, mdiImageSearch} from '@quasar/extras/mdi-v4'
+  import {mdiCubeOutline, mdiNetworkRouter, mdiImageSearch, mdiSelectGroup, mdiDocker} from '@quasar/extras/mdi-v4'
+  import ContainersTab from "../../components/Docker/ContainersTab/ContainersTab";
+  import ImagesTab from "../../components/Docker/ImagesTab/ImagesTab";
 
     export default {
         name: "Docker",
+      components: {ImagesTab, ContainersTab},
       data(){
           return{
             mainTabs: [
@@ -46,6 +49,16 @@
                 name: 'networks',
                 icon: mdiNetworkRouter,
                 label: "Networks"
+              },
+              {
+                name: 'groups',
+                icon: mdiSelectGroup,
+                label: "Groups"
+              },
+              {
+                name: 'swarm',
+                icon: mdiDocker,
+                label: "Swarm"
               }
             ],
             tab: 'containers'

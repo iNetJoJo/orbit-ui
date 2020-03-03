@@ -7,7 +7,7 @@
       table-header-class="text-white"
       flat
       bordered
-      title="Databases"
+      title="Docker Containers"
       :data="data"
       :columns="columns"
       row-key="name"
@@ -17,21 +17,19 @@
 </template>
 
 <script>
-
-
     export default {
-        name: "DBTable",
+        name: "ContainersTable",
         props:{
           data: Array,
           rowClick: Function
         },
-        data(){
+      data(){
           return{
             columns: [
               {
                 name: 'name',
                 required: true,
-                label: 'Instance name',
+                label: 'Container name',
                 align: 'left',
                 field: row => row.name,
                 format: val => `${val}`,
@@ -43,7 +41,7 @@
               { name: 'status', label: 'Status', field: 'status', sortable: true, sort: (a, b) => parseInt(a, 10) - parseInt(b, 10) }
             ],
           }
-        },
+      }
     }
 </script>
 

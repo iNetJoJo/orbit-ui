@@ -18,14 +18,14 @@
     </q-dialog>
 <!--    Shows db instance info-->
     <q-dialog v-model="show_DBInstanceModal" full-width>
-      <DatabasesInspectModal :container="chosen_container" :reset-table="getDatabases" :exit-modal="show_DBInstanceModal != show_DBInstanceModal"/>
+      <DockerContainerInspectModal :container="chosen_container" :reset-table="getDatabases" :exit-modal="show_DBInstanceModal != show_DBInstanceModal"/>
     </q-dialog>
   </q-page>
 </template>
 
 <script>
   import 'boot/axios';
-  import DatabasesInspectModal from "../../components/Databases/InspectModal/DatabasesInspectModal";
+  import DockerContainerInspectModal from "../../components/InspectModal/ContainersInspectModal";
   import DatabasePickerModal from "../../components/Databases/PickerModal/DatabasePickerModal";
   import RestAPI from "../../lib/backend-rest/RestAPI";
   import notifications from "../../lib/Notification/notifications";
@@ -34,7 +34,7 @@
 
     export default {
         name: "Databases",
-      components: {DBTable, DatabasePickerModal, DatabasesInspectModal},
+      components: {DBTable, DatabasePickerModal, DockerContainerInspectModal},
       data(){
           return{
             start_when_created: false,

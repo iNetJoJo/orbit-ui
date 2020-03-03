@@ -73,7 +73,7 @@
 <script>
 import EssentialLink from 'components/EssentialLink'
 import Notifications from "../components/Notifications/Notifications";
-import { mdiDocker, mdiKubernetes } from '@quasar/extras/mdi-v4'
+import { mdiDocker, mdiKubernetes, mdiApacheKafka } from '@quasar/extras/mdi-v4'
 
 export default {
   name: 'MainLayout',
@@ -123,6 +123,12 @@ export default {
           caption: 'no instances',
           icon: mdiKubernetes,
           to: "/kubernetes"
+        },
+        {
+          title: 'Message Brokers',
+          caption: 'no instances',
+          icon: mdiApacheKafka,
+          to: '/services'
         },
         {
           title: 'Service monitoring',

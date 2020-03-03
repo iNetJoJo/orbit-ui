@@ -46,7 +46,10 @@
       components: {NotificationIcons},
       data(){
           return{
-            notifications: [],
+            notifications: Array({
+              Status: Number,
+              Tab: Number
+            }),
             wsConn: WebSocket
           }
 

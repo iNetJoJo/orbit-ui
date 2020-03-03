@@ -75,8 +75,8 @@
 </template>
 
 <script>
-import RestAPI from "../../../lib/backend-rest/RestAPI";
-import notifications from "../../../lib/Notification/notifications";
+import RestAPI from "../../lib/backend-rest/RestAPI";
+import notifications from "../../lib/Notification/notifications";
 
 export default {
   name: "ControlsTab",
